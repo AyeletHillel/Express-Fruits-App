@@ -11,7 +11,8 @@ const { Schema, model } = mongoose // destructuring, grabbing model and Schema o
 const fruitsSchema = new  Schema({
     name: String,
     color: String,
-    readyToEat: Boolean
+    readyToEat: Boolean,
+    username: String
 })
 
 const Fruit = model('Fruit', fruitsSchema)

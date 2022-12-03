@@ -40,6 +40,8 @@ router.post("/login", (req, res) => {
         //check if password matches
         const result = bcrypt.compareSync(password, user.password);
         if (result) {
+          req.session.username = username
+          req.session.loggedIn = true
           res.redirect("/fruits");
         } else {
           res.send("wrong password");
@@ -47,6 +49,13 @@ router.post("/login", (req, res) => {
       }
     });
   });
+
+router.get("/logout", (req, res) => {
+    // destroy session and redirect to main page
+    req.session.destroy((err) => {
+        res.redirect("/")
+    })
+})
 
 
 // The login Routes (Get => form, post => submit form)
